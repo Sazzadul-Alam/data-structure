@@ -1,0 +1,82 @@
+#include <iostream>
+using namespace std;
+
+struct Node {
+    int data;
+    struct Node *left, *right;
+    Node(int data){
+        this->data = data;
+        left = right = NULL;
+    }
+};
+void Inorder(struct Node* node)
+{
+    if (node == NULL)
+    return;
+    Inorder(node->left);
+    cout << node->data << " ";
+    Inorder(node->right);
+}
+void Preorder(struct Node* node)
+{
+    if (node == NULL)
+        return;
+    cout << node->data << " ";
+    Preorder(node->left);
+    Preorder(node->right);
+}
+
+void Postorder(struct Node* node){
+
+    if (node == NULL)
+    return;
+    Postorder(node->left);
+    Postorder(node->right);
+    cout << node->data << " ";
+}
+
+int main()
+{
+    struct Node* root = new Node(14);
+    root->left = new Node(11);
+    root->right = new Node(21);
+    root->left->left = new Node(18);
+    root->left->right = new Node(12);
+    root->right->left = new Node(16);
+    root->right->right = new Node(25);
+   int a;
+    bool x = true;
+    while(x){
+    cout<<" 1. Inorder "<<endl;
+    cout<<" 2. Preorder "<<endl;
+    cout<<" 3. Postorder "<<endl;
+    cout<<" 4. Exit"<<endl<<endl;
+    cout<<" Enter your choice "<<endl;
+    cin>>a;
+    cout<<endl;
+ switch(a){
+        case 1:
+            cout << "Inorder traversal of binary tree is : ";
+            Inorder(root);
+            break;
+
+        case 2:
+            cout << "Preorder traversal of binary tree is : ";
+            Preorder(root);
+            break;
+
+        case 3:
+            cout << "Postorder traversal of binary tree is : ";
+            Postorder(root);
+            break;
+        case 4:
+            cout<<"exiting..";
+            x = false;
+            break;
+        default:
+            cout<<"wrong input. chose 1-4."<<endl;
+            break;
+        }
+    return 0;
+    }
+}
